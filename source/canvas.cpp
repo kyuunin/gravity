@@ -7,7 +7,7 @@
 #define SPEED 10
 #define ROT 1
 #define ZOOM_IN 1.1
-#define ZOOM_OUT 1/ZOOM_IN
+#define ZOOM_OUT (1/ZOOM_IN)
 
 bool w=0,a=0,s=0,d=0,q=0,e=0,p=0,m=0;
 QTransform transform;
@@ -19,36 +19,46 @@ Canvas::Canvas(Game* game,QWidget *parent) : QWidget(parent)
 }
 
 void Canvas::paintEvent(QPaintEvent* event){
+    // super call
     QWidget::paintEvent(event);
 
+    // get painter
     QPainter painter(this);
     painter.fillRect(0,0,width(),height(),QColor(0,0,0));
     painter.setBrush(QBrush(Qt::yellow));
     painter.setPen(QPen(Qt::yellow));
 
+    // translate painter
     if(w) painter.translate(QPointF(0,SPEED));
     if(a) painter.translate(QPointF(SPEED,0));
     if(s) painter.translate(QPointF(0,-SPEED));
     if(d) painter.translate(QPointF(-SPEED,0));
 
+    // center painter
     painter.translate(QPointF(width()/2,height()/2));
 
+    // zoom painter
     if(m) painter.scale(ZOOM_OUT,ZOOM_OUT);
     if(p) painter.scale(ZOOM_IN,ZOOM_IN);
+
+    // rotate painter
     if(q) painter.rotate(-ROT);
     if(e) painter.rotate(ROT);
 
+    // decenter painter
     painter.translate(QPointF(-width()/2,-height()/2));
 
+    // restore and store transformation
     painter.setTransform(transform,true);
     transform=painter.transform();
 
-
+    // draw Shapes
     for(size_t i =0; i<_game->n();i++){
         _game->shapes()[i].paint(painter);
     }
 }
 
+// this checks for keys
 void setAction(int key, bool on = 1){
 
     switch (key) {

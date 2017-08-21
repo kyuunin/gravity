@@ -1,0 +1,16 @@
+##########
+#Controls#
+##########
+
+w : move up
+a : move left
+s : move down
+d : move right
+q : rotate left
+e : rotate right
+- : zoom out
++ : zoom in
+
+Controls are defined in "source/canvas.cpp"
+Key to Action mapping in 'void setAction(int,bool)'
+Action Effects in 'void Canvas::paintEvent(QPaintEvent*)'
