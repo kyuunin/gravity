@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{ragged2e}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\DeclareMathOperator{\Q}{\mathbb{Q}}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\F}{\mathcal{F}}
+\DeclareMathOperator{\Prop}{\mathbb{P}}
+\DeclareMathOperator{\1}{1\!\!1}
+\DeclareMathOperator{\Bias}{Bias}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\qed}{QED}
+\begin{document}
+\section{Gravity}
+Newton Gravity: 
+\begin{flalign*}
+	\mathbf{\ddot x}=-G{m\over r^2}\mathbf{\hat x}&&
+\end{flalign*}
+\section{Circle Orbit}
+A circular Orbit has following property.
+\begin{flalign*}
+	\mathbf{x}=&\,r e^{i \omega t}&&\\
+	\mathbf{\dot x}=&\,i\,\omega r e^{i \omega t}\\
+	\mathbf{\ddot x}=&-\omega^2 r e^{i \omega t}\\
+	\\
+	\Rightarrow&\\
+	\\
+	\omega =& \sqrt{\ddot x\over r}\\
+	\\
+	\Rightarrow&\\
+	\\
+	\mathbf{\dot x} =& \, \sqrt{\ddot x\over r}\,i\mathbf{x}
+\end{flalign*}
+\section{Correction Position}
+For the correction of position a non-linear Gauss-Seidel solver can be used. \url {http://matthias-mueller-fischer.ch/realtimephysics/coursenotes.pdf}
+\begin{flalign*}
+	\Delta \mathbf p_i = - sw_i\nabla_{\mathbf p_i}C(\mathbf p)\\
+	s={C(\mathbf p)\over\sum_j w_j |\nabla _{\mathbf p_j}C(\mathbf p)|^2}
+\end{flalign*}
+\end{document}

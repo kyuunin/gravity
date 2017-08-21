@@ -34,7 +34,7 @@ Game::Game(QObject *parent) : QObject(parent)
     for(size_t i = 1; i<N ; i++){
         SqrtFourier f(S,M);
         _shapes[i]=Shape(this,f,K);
-        QPointF pos = QPointF(X,Y);
+        QPointF pos = QPointF(X,0);
         _shapes[i].off()=pos;
         auto tmp = QPointF::dotProduct(pos,pos);
         std::cout<<mass/sqrt(tmp)<<std::endl;
